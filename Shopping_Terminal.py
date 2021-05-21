@@ -199,7 +199,10 @@ def location():
     choice=int(input("Kindly choose your residential area: "))
     print("-----------------------------------")
     if choice in areas.keys():
-        dijsktra(links,"DHA",areas[choice])
+        if choice==1:
+            print("Your package will be delivered in 5 mins")
+        else:
+            dijsktra(links,"DHA",areas[choice])
     else:
         print("You have entered an invalid choice, kindly enter again!")
         location()  
