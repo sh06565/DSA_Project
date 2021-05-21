@@ -2,6 +2,7 @@
 # import keyboard
 from os import system, name
 from time import sleep
+from typing import final
 # check git hub saved? 
 def inventory():
     data=  [
@@ -74,10 +75,21 @@ def dijsktra(graph,start,end):
     y=end
     while x!=start:
         x=short_dist[y][0]
-        path.insert(0,(x, y))
+        path.insert(0,(x,y))
         y=x
-    print("==>The shortest path is : "+"\n",path)
-    print("The paths are as follows: "+"\n")
+    time=0
+    for each in path:
+        time+=(short_dist[each[1]])[1]
+    final=""
+    for tuple in path:
+        for each in tuple:
+            if each not in final:
+                final+=each+" --> "
+    print()
+    print("==> The path from our store to your area is ",final[:-4,"."])
+    print()
+    print("==> The time taken will to reach your area will be  "+str(time)+" mins.")
+    print()
 def filter():
     print()
     check=input("Would you like to filter the prices? Y or N? ")
@@ -183,6 +195,8 @@ def location():
           "North KArachi":[("Nazimabad",18)]
     }
     print("""
+    Our Store is located in DHA and below are the available delivery options
+
     Delivery options
     ================================
     1:"DHA",
@@ -200,9 +214,13 @@ def location():
     print("-----------------------------------")
     if choice in areas.keys():
         if choice==1:
-            print("Your package will be delivered in 5 mins")
+            print("==> Our Store is located in your area.")
+            print() 
+            print("==> The time taken will to reach your area will be  "+str(5)+" mins.")
+            print()
         else:
             dijsktra(links,"DHA",areas[choice])
+        print("-----------------------------------")
     else:
         print("You have entered an invalid choice, kindly enter again!")
         location()  
@@ -228,8 +246,8 @@ def shoppingCart():
             viewcart(cart)
         elif choice==0:
             clear()
+            x=location()
             checkout(cart)
-            location()
             break
         print()
         choice=int(input("Kindly choose your choice: "))
