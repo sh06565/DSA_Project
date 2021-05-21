@@ -88,7 +88,7 @@ def dijsktra(graph,start,end):
     print()
     print("==> The path from our store to your area is ",final[:-4,"."])
     print()
-    print("==> The time taken will to reach your area will be  "+str(time)+" mins.")
+    print("==> The time taken to reach your area will be  "+str(time)+" mins.")
     print()
 def filter():
     print()
@@ -216,7 +216,7 @@ def location():
         if choice==1:
             print("==> Our Store is located in your area.")
             print() 
-            print("==> The time taken will to reach your area will be  "+str(5)+" mins.")
+            print("==> The time taken to reach your area will be  "+str(5)+" mins.")
             print()
         else:
             dijsktra(links,"DHA",areas[choice])
