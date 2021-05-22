@@ -1,7 +1,6 @@
 # importig funcitons that will be required to run our code
 from os import system, name
 from time import sleep
-from typing import final
 
 
 # using a list to store our inventory, each dictionary inside of the list representing the data for an item. 
@@ -328,7 +327,9 @@ def shoppingCart():
             viewcart(cart)
         elif choice==0:
             clear()
-            x=location()
+            location()
+            print("==> This is the final receipt")
+            print("-----------------------------------")
             checkout(cart)
             # breaks this loop once checkout is called 
             break
