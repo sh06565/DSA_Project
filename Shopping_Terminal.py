@@ -214,7 +214,7 @@ def remove(cart):
 # fucnion that displays the cart to the user 
    
 def viewcart(cart):
-    print("ID   Name                        Quantity    Price")
+    print("ID   Name                       Quantity    Price")
     for key, value in cart.items():
         print(str(key)+" "+value[0]+"          "+str(value[1])+"           "+str(value[2]))
 
