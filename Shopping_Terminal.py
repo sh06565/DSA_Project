@@ -20,19 +20,19 @@ def inventory():
     ]
     return data
 
-# displays the inventory to the user
+# function that displays the inventory to the user
 
 def userMenu(x):
     for each in x:
         print(each["Info"])
 
-# clears the screen
+# function that clears the screen
 
 def clear():
     if name == 'nt':
         _ = system('cls')
 
-# sorts the given field
+# bubble sort sorts the prices 
   
 def bubble_sort(lst,check2):
     x=len(lst)
@@ -50,7 +50,7 @@ def bubble_sort(lst,check2):
                         lst[i],lst[i+1]=lst[i+1],lst[i]
             return lst
 
-# searches for the given item in the list
+# binary searche returns the index of dictionary of the item present in our inventory 
 
 def binary_search_iterative(lst, item):
     low,high=0, len(lst)-1
@@ -64,7 +64,7 @@ def binary_search_iterative(lst, item):
             high=mid-1
     return -1
 
-# gives us the paths for our required list
+# dijkstra gives us the delivery path and time taken from our store to the user's area
 
 def dijsktra(graph,start,end):
     lst_nodes=list(graph.keys())
@@ -108,7 +108,7 @@ def dijsktra(graph,start,end):
     print("==> The time taken to reach your area will be  "+str(time)+" mins.")
     print()
 
-# filters the inventory data, by either high or low using bubble sort
+# function that filters the inventory data, by either high or low using bubble sort
 
 def filter():
     # print() statement for spacing
@@ -139,7 +139,7 @@ def filter():
         # if they do not want to filter we pass
         pass
 
-# updates the stock in the inventory when changes are made to cart
+# funcion that updates the stock in the inventory when changes are made to cart
 
 def stock(qnty,position):
     # gets current stock of item from inventory 
@@ -155,7 +155,7 @@ def stock(qnty,position):
     elif x<qnty:
         return -x
 
-# adds selected items to cart 
+# function that adds selected items to cart 
 
 def add(cart):
     # asks user for the item that they would like to add to cart
@@ -183,7 +183,7 @@ def add(cart):
         # if id not in inventory then it outputs an error msg
         print("Enter a valid id to add!")
 
-# deletes the selected item from the cart 
+# function deletes the selected item from the cart 
 
 def remove(cart):
     # displays cart to user 
@@ -201,31 +201,43 @@ def remove(cart):
         # else if quantitiy does not match the items quantity in cart then it tells the user to enter a valid quantity  
         elif cart[item][1]<qnty:
             print("Entered quantity doesn't exist, enter a valid quantity to remove!")
-        # else, then it removes the set quantity and updates the 
+        # else, then it removes the set quantity from the cart 
         else:
+            # removing item from cart
             intial=cart[item][1]
             cart[item][1]=(cart[item][1])-qnty
             cart[item][2]=(cart[item][2])-((cart[item][2]/intial)*qnty)
         print("Item removed from cart!")
     else:
-        print("Enter a valid id to remove!")    
+        # if id not present in cart prompts the user to enter a valid id 
+        print("Enter a valid id to remove!") 
+
+# fucnion that displays the cart to the user 
+   
 def viewcart(cart):
     print("ID   Name                        Quantity    Price")
     for key, value in cart.items():
         print(str(key)+" "+value[0]+"          "+str(value[1])+"           "+str(value[2]))
+
+# fucntion that displays the total bill 
 def checkout(cart):
     total=0
+    # sums up all the prices of items present in our cart 
     for key, value in cart.items():
         total+=value[2]
     viewcart(cart)
     print()
+    # displays the receipt
     print("===================================================")
     print("Total:                                      ",total)
     print("===================================================")
+    # if the total is < or =  0 it means that there is no item in cart, so it prompts the user that they can not proceed to checkout 
     if total<=0:
         print()
         print("Your cart is empty, you can not proceed to checkout!")
         print()
+
+# 
 def location():
     areas={
             1:"DHA",
