@@ -103,7 +103,7 @@ def dijsktra(graph,start,end):
             if each not in final:
                 final+=each+" --> "
     print()
-    print("==> The path from our store to your area is ",final[:-4,"."])
+    print("==> The path from our store to your area is ",final[:-4],".")
     print()
     print("==> The time taken to reach your area will be  "+str(time)+" mins.")
     print()
@@ -237,8 +237,9 @@ def checkout(cart):
         print("Your cart is empty, you can not proceed to checkout!")
         print()
 
-# 
+# funciton that displays the delivery time and the fastest route that the rider will take   
 def location():
+    # dicionary of areas that we deliver to 
     areas={
             1:"DHA",
             2:"Bahadrabad",
@@ -251,6 +252,7 @@ def location():
             9:"North Nazimabad",
             10:"North KArachi"
     }
+    # connnections of our delivery areas
     links={
           "DHA" : [("Bahadrabad",22), ("Clifton",12),("Cantt",12)],
           "Bahadrabad" : [("Saki Hassan",19), ("Saddar",9),("DHA",20)],
@@ -263,6 +265,7 @@ def location():
           "North Nazimabad":[("Nazimabad",11)],
           "North KArachi":[("Nazimabad",18)]
     }
+    # asks the user to select their delivery area
     print("""
     Our Store is located in DHA and below are the available delivery options
 
@@ -281,19 +284,27 @@ def location():
     """)
     choice=int(input("Kindly choose your residential area: "))
     print("-----------------------------------")
+    # checks if the selected choice is present in our areas
     if choice in areas.keys():
+        # if areas is no.1 then it is the same area as our store
         if choice==1:
             print("==> Our Store is located in your area.")
             print() 
             print("==> The time taken to reach your area will be  "+str(5)+" mins.")
             print()
         else:
+            # calls the dijkstra function to display rider path and time taken 
             dijsktra(links,"DHA",areas[choice])
         print("-----------------------------------")
     else:
+        # if area not present in dict then it prompts the user and calls the location function again
         print("You have entered an invalid choice, kindly enter again!")
         location()  
+
+# function that has all the commands that we can make to our shopping cart
+
 def shoppingCart():
+    # displays the available options to the user 
     print("""
     Shopping basket options
     ================================
@@ -304,8 +315,10 @@ def shoppingCart():
 
     """)
     cart={}
+    # inputs the choice from the user 
     choice=int(input("Kindly choose your choice: "))
     print("----------------------------")
+    # calls the function according to the set choice 
     while True:
         if choice==1:
             add(cart)
@@ -317,23 +330,28 @@ def shoppingCart():
             clear()
             x=location()
             checkout(cart)
+            # breaks this loop once checkout is called 
             break
         print()
         choice=int(input("Kindly choose your choice: "))
         print("----------------------------")
+
+# main funciton that runs the whole code 
             
 def main():
+    # displays welcome msg
     print("""
     ========================================
 
         
-       Welcome to our online samsung store
+         Welcome to our Terminal Bakery
         
          
     ========================================
     """)
-    # sleep(1)
-    # clear()
+    sleep(2)
+    clear()
+    # displays the available products
     print("These are the available products.")
     print()
     print("************************************************")
@@ -343,13 +361,17 @@ def main():
     print()
     print("************************************************")
     filter()
+    # after displaying it calls the shopping cart function
     shoppingCart()
+    # asks if there is a new user or would they like to exit 
     OK=input("TYPE Enter for a new user or End to end program: ")
     if OK.lower()=="enter":
+        # if enter then it clears the screen and run the main() function again
         clear()
         main()
     elif OK.lower()=="exit":
+        # if exit() it exits the code
         exit()
 
-    
+# call the main function    
 main()
