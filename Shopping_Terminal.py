@@ -31,25 +31,60 @@ def clear():
     if name == 'nt':
         _ = system('cls')
 
+# Disregarding bubble sort upon Sir SJA's advice during VIVA, instead we'll be using quicksort. 
+# {
 # bubble sort sorts the prices 
   
-def bubble_sort(lst,check2):
-    x=len(lst)
-    if x>1:
-        if check2=="l":
-            for c in range(x-1):
-                for i in range(0,x-c-1):
-                    if lst[i]["Price"]>lst[i+1]["Price"]:
-                        lst[i],lst[i+1]=lst[i+1],lst[i]
-            return lst
-        elif check2=="h":
-            for c in range(x-1):
-                for i in range(0,x-c-1):
-                    if lst[i]["Price"]<lst[i+1]["Price"]:
-                        lst[i],lst[i+1]=lst[i+1],lst[i]
-            return lst
+# def bubble_sort(lst,check2):
+#     x=len(lst)
+#     if x>1:
+#         if check2=="l":
+#             for c in range(x-1):
+#                 for i in range(0,x-c-1):
+#                     if lst[i]["Price"]>lst[i+1]["Price"]:
+#                         lst[i],lst[i+1]=lst[i+1],lst[i]
+#             return lst
+#         elif check2=="h":
+#             for c in range(x-1):
+#                 for i in range(0,x-c-1):
+#                     if lst[i]["Price"]<lst[i+1]["Price"]:
+#                         lst[i],lst[i+1]=lst[i+1],lst[i]
+#             return lst
+# }
 
-# binary searche returns the index of dictionary of the item present in our inventory 
+# quick sort, sorts the prices 
+
+def quicksort(lst,check2):
+    if len(lst)<=1:
+        return lst
+    # if check is l then it sorts from low to high 
+    if check2=="l":
+        p=lst.pop()
+        gi,li=[],[]
+        # get each item's dict from our inventory's list  
+        for c in lst:
+            # comparing the Price values of items
+            if c["Price"]>p["Price"]:
+                gi.append(c)
+            else:
+                li.append(c)
+        # recursion returning the sorted list 
+        return quicksort(li,check2)+[p]+quicksort(gi,check2)
+    # if check is h then it sorts from high to low
+    elif check2=="h":
+        p=lst.pop()
+        gi,li=[],[]
+        # get each item's dict from our inventory's list  
+        for c in lst:
+            # comparing the Price values of items
+            if c["Price"]<p["Price"]:
+                gi.append(c)
+            else:
+                li.append(c)
+        # recursion returning the sorted list 
+        return quicksort(li,check2)+[p]+quicksort(gi,check2)
+
+# binary search returns the index of dictionary of the item present in our inventory 
 
 def binary_search_iterative(lst, item):
     low,high=0, len(lst)-1
@@ -121,7 +156,7 @@ def filter():
         if check2=="l":
             clear()
             # using bubble sort we will sort our inventory from low to high 
-            x=bubble_sort(inventory(),check2)
+            x=quicksort(inventory(),check2)
             # display inventory 
             print("Prices filtered from low to high")
             print("ID      Model                   Price   PKR")
@@ -129,7 +164,7 @@ def filter():
         elif check2.lower()=="h":
             clear()
             # using bubble sort we will sort our inventory from low to high 
-            x=bubble_sort(inventory(),check2)
+            x=quicksort(inventory(),check2)
             # display inventory 
             print("Prices filtered from high to low")
             print("ID      Model                   Price   PKR")
