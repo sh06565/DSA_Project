@@ -2,6 +2,12 @@
 from os import system, name
 from time import sleep
 
+# The main layout of terminal resembles a lot to the foodpanda application.
+# In which the main functions are that the user can add items to the cart, removes item from his cart, view his cart and then finally
+# place his order.
+# Dear Sir SJA, I made most of the changes that you advised during our project VIVA, to make our code more efficient and practical,
+# hope you enjoy this code.
+# Thanks 
 
 # using a list to store our inventory, each dictionary inside of the list representing the data for an item. 
 
@@ -141,9 +147,11 @@ def dijsktra(graph,start,end):
         path.insert(0,(x,y))
         y=x
     time=0
+    # calculates the total time taken that the rider will take to get the products to the user
     for each in path:
         time+=(short_dist[each[1]])[1]
     final=""
+    # makes the path that the rider will take to get from DHA to the selected delivery area
     for tuple in path:
         for each in tuple:
             if each not in final:
