@@ -84,19 +84,31 @@ def quicksort(lst,check2):
         # recursion returning the sorted list 
         return quicksort(li,check2)+[p]+quicksort(gi,check2)
 
+# Disregarding binary search upon Sir SJA's advice during VIVA, instead we'll be using linear search. 
+# {
+# bubble sort sorts the prices 
 # binary search returns the index of dictionary of the item present in our inventory 
 
-def binary_search_iterative(lst, item):
-    low,high=0, len(lst)-1
-    while low<=high:
-        mid=(low+high)//2
-        if item==lst[mid]["id"]:
-            return mid
-        elif item>lst[mid]["id"]:
-            low=mid+1
-        elif item<lst[mid]["id"]:
-            high=mid-1
-    return -1
+# def binary_search_iterative(lst, item):
+#     low,high=0, len(lst)-1
+#     while low<=high:
+#         mid=(low+high)//2
+#         if item==lst[mid]["id"]:
+#             return mid
+#         elif item>lst[mid]["id"]:
+#             low=mid+1
+#         elif item<lst[mid]["id"]:
+#             high=mid-1
+#     return -1
+# }
+
+# linear search returns the index of dictionary of the item present in our inventory 
+
+def linear_search(lst,item):
+    for c in range(len(lst)):
+        if lst[c]["id"]==item:
+            return c
+    return -1 
 
 # dijkstra gives us the delivery path and time taken from our store to the user's area
 
@@ -195,7 +207,7 @@ def add(cart):
     # asks user for the item that they would like to add to cart
     item=int(input("Enter the id of the item u would like to add: "))
     # we get the index of our dictionary from the list 
-    position=binary_search_iterative(inventory(),item)
+    position=linear_search(inventory(),item)
     # check for if index in list 
     if position!=-1:
         # ask for the required quantity of the item
@@ -251,7 +263,7 @@ def remove(cart):
 def viewcart(cart):
     print("ID   Name                       Quantity    Price")
     for key, value in cart.items():
-        print(str(key)+" "+value[0]+"          "+str(value[1])+"           "+str(value[2]))
+        print(str(key)+" "+value[0]+"         "+str(value[1])+"           "+str(value[2]))
 
 # fucntion that displays the total bill 
 def checkout(cart):
