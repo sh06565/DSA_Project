@@ -305,11 +305,11 @@ def location():
           "Clifton" : [("Saddar",12), ("Cantt",10), ("Garden",20), ("DHA",11)],
           "Cantt" : [("DHA",14), ("Clifton",11), ("Saddar",8)],
           "Saddar" : [("Clifton", 14), ("Cantt",7), ("Bahadrabad",14), ("North Nazimabad",25), ("Nazimabad",18), ("Garden",9)],
-          "Nazimabad" : [("North Nazimabad",10), ("North KArachi",17),("Saddar",20)],
+          "Nazimabad" : [("North Nazimabad",10), ("North Karachi",17),("Saddar",20)],
           "Saki Hassan":[("Bahadrabad",21)],
           "Garden":[("Clifton",18),("Saddar",9)],
           "North Nazimabad":[("Nazimabad",11)],
-          "North KArachi":[("Nazimabad",18)]
+          "North Karachi":[("Nazimabad",18)]
     }
     # asks the user to select their delivery area
     print("""
